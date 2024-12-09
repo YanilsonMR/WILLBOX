@@ -68,6 +68,16 @@ nav ul li a:hover {
     margin-bottom: 1rem;
 }
 
+#lista-ingresos li{
+    background-color: red;
+}
+
+#lista-egresos li{
+    list-style: none;
+}
+
+
+
 .btn {
     display: inline-block;
     background-color: var(--color-secundario);

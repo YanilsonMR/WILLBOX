@@ -6,13 +6,15 @@ const formularioMovimiento = document.getElementById('movimiento-form');
 const tipoMovimiento = document.getElementById('tipo-movimiento');
 const descripcion = document.getElementById('descripcion');
 const monto = document.getElementById('monto');
+const listaIngresos = document.getElementById('lista-ingresos');
+const listaEgresos = document.getElementById('lista-egresos');
 
 // Evento de envío del formulario
-formularioMovimiento.addEventListener('submit', function(e) {
+formularioMovimiento.addEventListener('submit', function (e) {
     e.preventDefault();
-    
+
     // Validar campos
-    if (!descripcion.value || !monto.value ) {
+    if (!descripcion.value || !monto.value) {
         alert('Por favor, completa todos los campos');
         return;
     }
@@ -31,39 +33,45 @@ formularioMovimiento.addEventListener('submit', function(e) {
     descripcion.value = '';
     monto.value = '';
 
-    // Actualizar gráficas
+    // Actualizar lista de movimientos y gráficas
+    mostrarLista();
     actualizarGraficas();
 });
+
+// Función para mostrar la lista de movimientos
+function mostrarLista() {
+    // Limpiar listas
+    listaIngresos.innerHTML = '';
+    listaEgresos.innerHTML = '';
+
+    // Agregar movimientos a las listas correspondientes
+    movimientos.forEach((movimiento) => {
+        const li = document.createElement('li');
+        li.textContent = `${movimiento.descripcion}: $${movimiento.monto.toFixed(2)}`;
+
+        if (movimiento.tipo === 'ingreso') {
+            listaIngresos.appendChild(li);
+        } else {
+            listaEgresos.appendChild(li);
+        }
+    });
+}
 
 // Función para actualizar gráficas
 function actualizarGraficas() {
     const ingresos = movimientos
-        .filter(mov => mov.tipo === 'ingreso')
+        .filter((mov) => mov.tipo === 'ingreso')
         .reduce((total, mov) => total + mov.monto, 0);
 
     const egresos = movimientos
-        .filter(mov => mov.tipo === 'egreso')
+        .filter((mov) => mov.tipo === 'egreso')
         .reduce((total, mov) => total + mov.monto, 0);
 
     // Calcular balance
     const balance = ingresos - egresos;
 
     // Actualizar elementos de gráficas
-    const graficaIngresos = document.getElementById('grafica-ingresos');
-    const graficaEgresos = document.getElementById('grafica-egresos');
     const graficaBalance = document.getElementById('grafica-balance');
-
-    graficaIngresos.innerHTML = `
-        <h4>Ingresos Totales</h4>
-        <p>$${ingresos.toFixed(2)}</p>
-    `;
-
-    graficaEgresos.innerHTML = `
-        <h4>Egresos Totales</h4>
-        <p>$${egresos.toFixed(2)}</p>
-    `;
-
-    // Agregar sección de balance
     graficaBalance.innerHTML = `
         <h4>Balance</h4>
         <p class="${balance >= 0 ? 'balance-positivo' : 'balance-negativo'}">
@@ -71,3 +79,16 @@ function actualizarGraficas() {
         </p>
     `;
 }
+
+// Cargar nombre de usuario al cargar la página
+document.addEventListener('DOMContentLoaded', function () {
+    const username = localStorage.getItem('usuarioActual');
+    if (!username) {
+        // Si no hay usuario, redirigir al login
+        window.location.href = 'login-sistema-responsivo.html';
+    }
+
+    // Mostrar nombre de usuario en la bienvenida
+    const bienvenidaElement = document.getElementById('bienvenida');
+    bienvenidaElement.textContent = `Bienvenido/a ${username}`;
+});
