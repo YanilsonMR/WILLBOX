@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WILL-BOX</title>
-    <link rel="stylesheet" href="/css/Principal_Page.css">
+    <link rel="stylesheet" href="/css/Principal_Page.css"> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script> <!-- Incluye Chart.js -->
 </head>
 <body>
     <header>
@@ -17,12 +18,9 @@
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
-<!-- Seccion para el bienvenido y cerrar sesion  -->
         <div class="container main-page">
-
             <h1 id="bienvenida">Bienvenido</h1> 
             <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesión</button>
-            
         </div>
     </header>
 
@@ -34,7 +32,7 @@
                 <a href="#dashboard" class="btn">Comenzar</a>
             </div>
         </section>
-<!-- Recuadros de las caracteristicas -->
+
         <section id="caracteristicas" class="features">
             <h2>Características</h2>
             <div class="features-grid">
@@ -59,7 +57,6 @@
         <section id="dashboard" class="dashboard">
             <h2>Tu Panel Financiero</h2>
             <div class="dashboard-container">
-<!--Seccion de para registro de movimientos -->
                 <div class="input-section">
                     <h3>Registrar Movimiento</h3>
                     <form id="movimiento-form">
@@ -72,29 +69,32 @@
                         <button type="submit">Agregar</button>
                     </form>
                 </div>
-<!-- seccion de graficos -->
+
                 <div class="grafica-section">
                     <h3>Resumen Financiero</h3>
                     <div class="graficas">
+                        <!-- Sección de Gráficas -->
                         <div class="grafica" id="grafica-ingresos">
                             <h4>Lista de Ingresos</h4>
-                            <ul id="lista-ingresos">                                
-                            </ul>
-                            
+                            <ul id="lista-ingresos"></ul>
+                            <canvas id="grafica-ingresos-canvas"></canvas> <!-- Gráfico de Ingresos -->
                         </div>
 
                         <div class="grafica" id="grafica-egresos">
                             <h4>Lista de Egresos</h4>
-                            <ul id="lista-egresos">
-                            </ul>
-                            
+                            <ul id="lista-egresos"></ul>
+                            <canvas id="grafica-egresos-canvas"></canvas> <!-- Gráfico de Egresos -->
                         </div>
-                        <div class="grafica" id="grafica-balance"></div>
+
+                        <div class="grafica" id="grafica-balance">
+                            <h4>Balance General</h4>
+                            <canvas id="grafica-balance-canvas"></canvas> <!-- Gráfico de Balance -->
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-<!-- Seccion de contacto -->
+
         <section id="contacto" class="contacto">
             <h2>Contáctanos</h2>
             <form>
@@ -104,11 +104,6 @@
                 <button type="submit">Enviar Mensaje</button>
             </form>
         </section>
-<!-- ---------------------------------------------------------------------------------------------------- -->
-        <section>
-            <h4>TITULO EJEMPLO</h4>
-            <canvas id="chart" height="200px" width="300px"></canvas>
-        </section>
     </main>
 
     <footer>
@@ -116,25 +111,8 @@
     </footer>
 
     <script>
-
-
-        // Cargar nombre de usuario al cargar la página
-        document.addEventListener('DOMContentLoaded', function() {
-            const username = localStorage.getItem('usuarioActual');
-            if (!username) {
-                // Si no hay usuario, redirigir al login
-                window.location.href = 'login-sistema-responsivo.html';
-            }
-            
-            // Mostrar nombre de usuario en la bienvenida
-            const bienvenidaElement = document.getElementById('bienvenida');
-            bienvenidaElement.textContent = `Bienvenido/a ${username}`;
-        });
-
-
+        // Aquí va el código JS que ya te proporcioné para gestionar los movimientos, actualizar las gráficas, etc.
     </script>
-    <script src="/Script/canvas.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/Script/landing-js.js"></script>
     <script src="/Script/script-js.js"></script>
 </body>
