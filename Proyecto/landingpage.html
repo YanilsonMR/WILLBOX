@@ -6,6 +6,10 @@
     <title>WILL-BOX</title>
     <link rel="stylesheet" href="/css/Principal_Page.css"> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script> <!-- Incluye Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SWEET ALERT-->
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"> <!-- CDN de emailJS -->
+</script>
 </head>
 <body>
     <header>
@@ -95,12 +99,42 @@
             </div>
         </section>
 
+        <section class="noticias" id="news">
+            <h4>Noticias</h4>
+            <p>Como parte de WILL-BOX, queremos compartir contigo algunas herramientas y documentación adicional sobre tus finanzas que podrían ayudarte 
+                a mejorar tu salud financiera.</p>
+            <br>
+            <p>Aqui encontraras canales de youtube y links que te enviaran a revistas oficiales sobre finanzas</p>
+            <div class="News">
+                <div class="News-Box">
+                    <i class="icon-Calculator"></i>
+                    <h3>Calcula tus finanzas</h3>
+                    <p>Te Brindamos de la mano del banco caja social esta Calculadora la cual sera de vital aydua par atus fininzas</p>
+                    <a href="https://www.bancocajasocial.com/calculadora-financiera/"><img src="/img/Icono-Calculadora.jpg" alt=""></a>
+                </div>
+                <div class="News-Box">
+                    <i class="icon-video"></i>
+                    <h3>DIANColombia</h3>
+                    <p>Mira el canal oficial de la DIAN y encontraras cosas utiles para tu vida financiera</p>
+                    <a href="https://www.youtube.com/@DIANcol"><img src="/img/Icono-Video.jpg" alt=""></a>
+                </div>
+                <div class="News-Box">
+                    <i class="icon-news"></i>
+                    <h3>Revistas</h3>
+                    <p>Desde el canal oficial de la DIAN te brindaran revistas financieras de calidad</p>
+                    <a href="https://investiga.banrep.gov.co/es/caie-recursos/diarios-y-periodicos-especializados-en-economia"><img src="/img/Icono-Revista.jpg" alt=""></a>
+
+                </div>
+            </div>
+
+        </section>
+
         <section id="contacto" class="contacto">
-            <h2>Contáctanos</h2>
-            <form>
-                <input type="text" placeholder="Nombre" required>
-                <input type="email" placeholder="Correo Electrónico" required>
-                <textarea placeholder="Tu Mensaje"></textarea>
+            <h2>Contáctanos</h2>            
+            <form id="contact-form">
+                <input type="text" placeholder="Nombre" required name="nombre" id="nombre">
+                <input type="email" placeholder="Correo Electrónico" required name="correo" id="correo">
+                <textarea placeholder="Tu Mensaje" name="mensaje" id="mensaje"></textarea>
                 <button type="submit">Enviar Mensaje</button>
             </form>
         </section>
@@ -113,7 +147,9 @@
     <script>
         // Aquí va el código JS que ya te proporcioné para gestionar los movimientos, actualizar las gráficas, etc.
     </script>
+    <script src="/Script/Contacto.js"></script>
     <script src="/Script/landing-js.js"></script>
     <script src="/Script/script-js.js"></script>
+    <script src="/Script/graficas.js"></script>
 </body>
 </html>
